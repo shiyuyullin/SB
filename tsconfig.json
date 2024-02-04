@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "target": "esnext", // this was suggested by VS Code, for using top-level 'await'
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,

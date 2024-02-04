@@ -1,4 +1,4 @@
-import { SearchResult } from "@/util/types/searchResult";
+import { SearchResult } from "@/util/types/client/searchResult";
 
 export function RepoCard(repo: SearchResult) {
   return (

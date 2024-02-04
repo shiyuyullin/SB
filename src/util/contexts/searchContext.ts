@@ -1,6 +1,6 @@
 import { Dispatch, createContext } from "react";
-import { SearchState } from "../types/searchState";
-import { SearchResult } from "../types/searchResult";
+import { SearchState } from "../types/client/searchState";
+import { SearchResult } from "../types/client/searchResult";
 
 export const SearchContext = createContext<SearchState | null>(null);
 export const SearchDispatchContext =

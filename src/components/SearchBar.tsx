@@ -1,6 +1,8 @@
-import { ChangeEvent, FormEvent, useRef, useState } from "react";
+import { SearchDispatchContext } from "@/util/contexts/searchContext";
+import { ChangeEvent, FormEvent, useContext, useRef, useState } from "react";
 
 export function SearchBar() {
+  const dispatch = useContext(SearchDispatchContext);
   const [searchInput, setSearchInput] = useState("");
 
   function handleOnInputChange(e: ChangeEvent<HTMLInputElement>) {
@@ -14,6 +16,10 @@ export function SearchBar() {
     console.log(response.json());
     // clearing the input after submitting
     setSearchInput("");
+    dispatch!({
+      type: "add",
+      results: [{ repoName: "repo2", author: "author2", message: "message2" }],
+    });
   }
 
   async function reqForRepo(keywords: String) {
