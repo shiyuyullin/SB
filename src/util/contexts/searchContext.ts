@@ -1,5 +1,5 @@
 import { Dispatch, createContext } from "react";
-import { SearchState } from "../types/searchReducerState";
+import { SearchState } from "../types/searchState";
 import { SearchResult } from "../types/searchResult";
 
 export const SearchContext = createContext<SearchState | null>(null);
@@ -26,7 +26,7 @@ export function searchReducer(
   }
 }
 
-// hardcoded for now
+// initial value will always be empty
 export const initialSearchResults: SearchState = {
-  repos: [{ repoName: "repo1", author: "author1", message: "nothinghere" }],
+  repos: [],
 };
