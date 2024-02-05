@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { RestEndpointMethodTypes } from "@octokit/plugin-rest-endpoint-methods";
 import { Octokit } from "octokit";
 import { SearchReposResponse } from "@/util/types/server/searchReposResponse";
+import { Repository } from "@/util/types/client/repository";
 
 // Create octokit for accessing github api
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
@@ -28,9 +28,34 @@ export default async function SearchHandler(
       });
 
     const items = responseFromGitAPI.data.items;
+    const repos: Repository[] = [];
 
-    res.status(200).json({ message: "success" });
+    items.forEach((item) => {
+      const trimedDescription = TrimDescription(item.description);
+      repos.push({
+        id: item.id,
+        repoName: item.name,
+        author: item.owner?.login,
+        language: item.language,
+        size: item.size,
+        visibility: item.visibility,
+        forks: item.forks,
+        watchers: item.watchers,
+        url: item.html_url,
+        description: trimedDescription,
+      });
+    });
+    res.status(200).json({ repos: repos });
   } else {
     res.status(404).json({});
   }
+}
+
+function TrimDescription(description: string | null): string | null {
+  if (!description) return null;
+
+  if (description.length > 250) {
+    return description.substring(0, 251);
+  }
+  return description;
 }

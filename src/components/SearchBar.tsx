@@ -1,7 +1,12 @@
-import { SearchDispatchContext } from "@/util/contexts/searchContext";
+import {
+  SearchContext,
+  SearchDispatchContext,
+} from "@/util/contexts/searchContext";
+import { Repository } from "@/util/types/client/repository";
 import { ChangeEvent, FormEvent, useContext, useRef, useState } from "react";
 
 export function SearchBar() {
+  const results = useContext(SearchContext);
   const dispatch = useContext(SearchDispatchContext);
   const [searchInput, setSearchInput] = useState("");
 
@@ -11,15 +16,18 @@ export function SearchBar() {
 
   async function handleSubmitForm(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log(searchInput);
-    const response = await reqForRepo(searchInput);
-    console.log(response.json());
+    /* NOTE: encountered a situation where I searched twice with same keywords
+            react tried to display  repos with same IDs and causing error
+    */
+    // check if there are repositories being displayed
+    if (results?.repos) {
+      dispatch!({ type: "clear" });
+    }
+    const responseJSON = await (await reqForRepo(searchInput)).json();
     // clearing the input after submitting
     setSearchInput("");
-    dispatch!({
-      type: "add",
-      results: [{ repoName: "repo2", author: "author2", message: "message2" }],
-    });
+    const repos: Repository[] = responseJSON.repos;
+    dispatch!({ type: "add", results: repos });
   }
 
   async function reqForRepo(keywords: String) {

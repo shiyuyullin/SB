@@ -1,14 +1,12 @@
 import { Dispatch, createContext } from "react";
 import { SearchState } from "../types/client/searchState";
-import { SearchResult } from "../types/client/searchResult";
+import { Repository } from "../types/client/repository";
 
 export const SearchContext = createContext<SearchState | null>(null);
 export const SearchDispatchContext =
   createContext<Dispatch<SearchAction> | null>(null);
 
-type SearchAction =
-  | { type: "clear" }
-  | { type: "add"; results: SearchResult[] };
+type SearchAction = { type: "clear" } | { type: "add"; results: Repository[] };
 
 export function searchReducer(
   state: SearchState,

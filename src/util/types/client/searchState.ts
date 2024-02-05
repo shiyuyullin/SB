@@ -1,5 +1,5 @@
-import { SearchResult } from "./searchResult";
+import { Repository } from "./repository";
 
 export interface SearchState {
-  repos: SearchResult[];
+  repos: Repository[];
 }
