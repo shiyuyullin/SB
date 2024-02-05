@@ -31,9 +31,7 @@ export function SearchResults() {
   return (
     <div>
       <h1>display search results here</h1>
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-        {repoCardList}
-      </div>
+      <div className="grid grid-cols-4 gap-4">{repoCardList}</div>
     </div>
   );
 }
