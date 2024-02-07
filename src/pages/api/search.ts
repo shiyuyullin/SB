@@ -24,7 +24,7 @@ export default async function SearchHandler(
         q: keywords,
         sort: "stars",
         order: "desc",
-        per_page: 10,
+        per_page: 120,
       });
 
     const items = responseFromGitAPI.data.items;

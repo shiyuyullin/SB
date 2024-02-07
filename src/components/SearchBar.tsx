@@ -3,9 +3,13 @@ import {
   SearchDispatchContext,
 } from "@/util/contexts/searchContext";
 import { Repository } from "@/util/types/client/repository";
-import { ChangeEvent, FormEvent, useContext, useRef, useState } from "react";
+import { ChangeEvent, FormEvent, useContext, useState } from "react";
 
-export function SearchBar() {
+interface SearchBarProps {
+  shouldDisplaySpinner: any;
+}
+
+export function SearchBar(props: SearchBarProps) {
   const results = useContext(SearchContext);
   const dispatch = useContext(SearchDispatchContext);
   const [searchInput, setSearchInput] = useState("");
@@ -17,17 +21,19 @@ export function SearchBar() {
   async function handleSubmitForm(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     /* NOTE: encountered a situation where I searched twice with same keywords
-            react tried to display  repos with same IDs and causing error
+            react tried to display repos with same IDs and causing error
     */
     // check if there are repositories being displayed
     if (results?.repos) {
       dispatch!({ type: "clear" });
     }
+    props.shouldDisplaySpinner(true);
     const responseJSON = await (await reqForRepo(searchInput)).json();
     // clearing the input after submitting
     setSearchInput("");
     const repos: Repository[] = responseJSON.repos;
     dispatch!({ type: "add", results: repos });
+    props.shouldDisplaySpinner(false);
   }
 
   async function reqForRepo(keywords: String) {
@@ -73,7 +79,7 @@ export function SearchBar() {
           id="searchInput"
           name="searchInput"
           className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          placeholder="Search Mockups, Logos..."
+          placeholder="Search Languages, Frameworks..."
           required
           value={searchInput}
           onChange={(e) => handleOnInputChange(e)}
