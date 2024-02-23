@@ -6,7 +6,7 @@ export default function indexPage() {
     <div>
       <Greeter message={`Welcome to Search B!`} />
       <div>
-        <NavButton text={"Talk to ChatGPT"} path={"chat"} />
+        <NavButton text={"Writers"} path={"writer"} />
         <NavButton text={"GitHub"} path={"search"} />
         <NavButton text={"about"} path={"about"} />
       </div>

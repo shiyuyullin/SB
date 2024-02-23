@@ -7,7 +7,7 @@ import {
   initialSearchResults,
   searchReducer,
 } from "@/util/contexts/searchContext";
-import { Suspense, useReducer, useState } from "react";
+import { useReducer, useState } from "react";
 
 export default function searchGitHub() {
   const [state, dispatch] = useReducer(searchReducer, initialSearchResults);
