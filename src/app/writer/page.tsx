@@ -15,5 +15,9 @@ export default async function Writers() {
     />
   ));
 
-  return <div>{writerCardList}</div>;
+  return (
+    <div className="container mx-auto flex justify-center">
+      {writerCardList}
+    </div>
+  );
 }
