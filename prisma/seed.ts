@@ -7,6 +7,7 @@ async function main() {
     create: {
       email: "alice@prisma.io",
       name: "Alice",
+      image: "https://avatars.githubusercontent.com/u/45950481?v=4",
       posts: {
         create: {
           title: "Check out Prisma with Next.js",
@@ -22,6 +23,7 @@ async function main() {
     create: {
       email: "bob@prisma.io",
       name: "Bob",
+      image: "https://avatars.githubusercontent.com/u/45950481?v=4",
       posts: {
         create: [
           {
@@ -38,7 +40,6 @@ async function main() {
       },
     },
   });
-  console.log({ alice, bob });
 }
 main()
   .then(async () => {

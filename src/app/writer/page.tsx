@@ -12,6 +12,7 @@ export default async function Writers() {
       id={writer.id}
       name={writer.name}
       email={writer.email}
+      imageUrl={writer.image}
     />
   ));
 

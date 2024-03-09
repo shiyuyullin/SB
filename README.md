@@ -37,6 +37,12 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ## Database Setup
 
+Prisma ORM + PostgreSQL
+
 To sync existing models into database: npx prisma db push
 
 Seeding: npx prisma db seed (Script for seeding can be found at prisma/seed.ts)
+
+## Authentication
+
+NextAuth + Oauth

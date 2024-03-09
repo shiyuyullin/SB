@@ -1,15 +1,31 @@
-import { Greeter } from "@/components/Greeter";
-import { NavButton } from "@/components/NavButton";
+import GithubHeadLine from "@/components/GithubHeadline";
+import { HeadLine } from "@/components/HeadLine";
+import SocialpostHeadline from "@/components/SocialpostHeadLine";
+import { signIn, useSession } from "next-auth/react";
 
-export default function indexPage() {
-  return (
-    <div>
-      <Greeter message={`Welcome to Search B!`} />
+export default function IndexPage() {
+  const { data: session, status } = useSession();
+
+  if (status === "authenticated") {
+    return (
       <div>
-        <NavButton text={"Writers"} path={"writer"} />
-        <NavButton text={"GitHub"} path={"search"} />
-        <NavButton text={"about"} path={"about"} />
+        <HeadLine />
+        <div className="py-4">
+          <GithubHeadLine />
+        </div>
+        <div>
+          <SocialpostHeadline />
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
+
+  if (status === "unauthenticated") {
+    return (
+      <div>
+        <h1>Unauthenticated</h1>
+        <button onClick={() => signIn("github")}>Sign in</button>
+      </div>
+    );
+  }
 }

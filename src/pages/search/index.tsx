@@ -9,7 +9,7 @@ import {
 } from "@/util/contexts/searchContext";
 import { useReducer, useState } from "react";
 
-export default function searchGitHub() {
+export default function SearchGitHub() {
   const [state, dispatch] = useReducer(searchReducer, initialSearchResults);
 
   const [displaySpinner, setDisplaySpinner] = useState(false);

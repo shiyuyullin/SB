@@ -14,7 +14,7 @@ model Post {
   content   String?
   published Boolean  @default(false)
   authorId  Int
-  author      User     @relation(fields: [authorId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  author    User     @relation(fields: [authorId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model Profile {
@@ -28,6 +28,7 @@ model User {
   id      Int      @id @default(autoincrement())
   name    String?  @db.VarChar(255)
   email   String   @unique @db.VarChar(255)
-  posts    Post[]
+  image   String
+  posts   Post[]
   profile Profile?
 }
