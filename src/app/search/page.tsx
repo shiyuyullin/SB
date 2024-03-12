@@ -1,3 +1,4 @@
+"use client";
 import { SearchBar } from "@/components/SearchBar";
 import { SearchResultsList } from "@/components/SearchResultList";
 import { Spinner } from "@/components/Spinner";

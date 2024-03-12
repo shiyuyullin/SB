@@ -1,3 +1,5 @@
+"use client";
+
 import GithubHeadLine from "@/components/GithubHeadline";
 import { HeadLine } from "@/components/HeadLine";
 import SocialpostHeadline from "@/components/SocialpostHeadLine";
